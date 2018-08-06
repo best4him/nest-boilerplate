@@ -3,7 +3,13 @@ import { CustomLoggerService } from './logger.service';
 
 export function logger(req, res, next) {
     const logger: CustomLoggerService = new CustomLoggerService();
-    logger.info(JSON.stringify(req));
-
+    logger.log({
+        level: 'info',
+        message: 'client request',
+        ip: req.ip,
+        method: req.method,
+        host: `${req.headers.host + req.url}`,
+        headers: req.headers,
+    });
     next();
-  }
+}

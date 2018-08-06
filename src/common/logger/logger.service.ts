@@ -37,13 +37,16 @@ export class CustomLoggerService implements LoggerService {
         });
     }
 
-    log(level: string, message?: string, th?: string) {
+    log(level: any, message?: string) {
         const winstonLevels = ['error', 'warn', 'info', 'verbose', 'debug', 'silly'];
-
-        if (winstonLevels.indexOf(level) !== -1) {
-            this.logger.log(level, message);
+        if (typeof level === 'string') {
+            if (winstonLevels.indexOf(level) !== -1) {
+                this.logger.log(level, message);
+            } else {
+                this.logger.log('info', level);
+            }
         } else {
-            this.logger.log('info', message);
+            this.logger.log(level);
         }
     }
 
