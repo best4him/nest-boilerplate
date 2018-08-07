@@ -3,3 +3,6 @@ logs/
 dist/
 coverage/
 .vscode
+
+# environment variables
+.env

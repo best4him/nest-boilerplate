@@ -35,12 +35,16 @@ export class ThingController {
 
     @Put(':id')
     @ApiOperation({title: 'Update the thing'})
+    @ApiBearerAuth()
+    @UseGuards(SessionGuard)
     update(@Param('id') id, @Body() ThingDto) {
         return `Update ${id}`;
     }
 
     @Delete(':id')
     @ApiOperation({title: 'Delete a thing by id'})
+    @ApiBearerAuth()
+    @UseGuards(SessionGuard)
     remove(@Param('id') id) {
         return `This action removes a #${id} cat`;
     }
